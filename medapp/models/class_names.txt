@@ -1,0 +1,9 @@
+oct_choroidal_hemangioma
+oct_choroidea_nevus
+oct_melanoma
+oct_normal
+photo_amelanotic_melanoma
+photo_choroidal_hemangioma
+photo_choroidea_nevus
+photo_normal
+photo_pigmented_melanoma

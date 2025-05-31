@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дообучение модели</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/retrain.js" defer></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+<div id="loader" class="hidden fixed inset-0 bg-white bg-opacity-70 flex items-center justify-center z-50">
+    <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-solid"></div>
+</div>
+
+<div class="w-full max-w-xl bg-white p-6 rounded shadow-md">
+    <div id="status-message" class="hidden text-center text-lg font-bold mb-4"></div>
+
+    <div id="drop-area" class="w-full border-4 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer">
+        <p class="text-gray-600">Перетащите сюда изображение или нажмите для выбора</p>
+        <input id="fileElem" type="file" accept="image/*" hidden>
+    </div>
+
+    <div id="preview-container" class="mt-4 flex justify-center"></div>
+
+    <div id="class-list" class="mt-4 flex flex-col gap-2">
+        <button class="class-btn">Фундус-фото Беспигментная меланома</button>
+        <button class="class-btn">Фундус-фото Пигментная меланома</button>
+        <button class="class-btn">Фундус-фото Невус хориоидеи</button>
+        <button class="class-btn">Фундус-фото Беспигментная гемангиома</button>
+        <button class="class-btn">Фундус-фото Здоровый глаз</button>
+        <button class="class-btn">ОКТ Меланома</button>
+        <button class="class-btn">ОКТ Невус хориоидеи</button>
+        <button class="class-btn">ОКТ Беспигментная гемангиома</button>
+        <button class="class-btn">ОКТ Здоровый глаз</button>
+    </div>
+
+    <div class="mt-4 flex gap-4">
+        <button id="delete-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded hidden">Удалить</button>
+        <button id="retrain-btn" class="bg-blue-400 text-white font-bold py-2 px-4 rounded flex-1 opacity-50 cursor-not-allowed" disabled>Отправить на дообучение</button>
+    </div>
+</div>
+
+<a id="back-link" href="index.html" class="mt-4 text-blue-500 hover:underline">← вернуться к анализу изображений</a>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход и регистрация</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/frontend/auth.js" defer></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+<h1 class="text-2xl font-bold mb-6">Добро пожаловать</h1>
+
+<div id="auth-options" class="flex gap-4">
+    <button id="login-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Войти</button>
+    <button id="register-btn" class="bg-blue-500 text-white px-4 py-2 rounded">Зарегистрироваться</button>
+</div>
+
+<form id="login-form" class="hidden flex flex-col gap-3 mt-6 w-80">
+    <input type="text" id="login-identifier" placeholder="Email или полное имя" class="p-2 border rounded">
+    <input type="password" id="login-password" placeholder="Пароль" class="p-2 border rounded">
+    <button id="submit-login" class="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Войти</button>
+    <a href="#" class="text-blue-500 text-sm mt-2" id="back-from-login">&larr; Назад</a>
+</form>
+
+<form id="register-form" class="hidden flex flex-col gap-3 mt-6 w-80">
+    <input type="text" id="reg-fullname" placeholder="Полное имя" class="p-2 border rounded">
+    <input type="email" id="reg-email" placeholder="Email" class="p-2 border rounded">
+    <input type="password" id="reg-password" placeholder="Пароль" class="p-2 border rounded">
+    <input type="password" id="reg-confirm" placeholder="Повтор пароля" class="p-2 border rounded">
+    <input type="text" id="reg-code" placeholder="Секретный код" class="p-2 border rounded">
+    <button id="submit-register" class="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed" disabled>Зарегистрироваться</button>
+    <a href="#" class="text-blue-500 text-sm mt-2" id="back-from-register">&larr; Назад</a>
+</form>
+
+<p id="auth-error" class="text-red-500 mt-4 hidden"></p>
+
+</body>
+</html>
