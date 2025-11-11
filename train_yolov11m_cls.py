@@ -117,11 +117,11 @@ def main():
             batch=BATCH,
             lr0=LR0,
             patience=PATIENCE,
-            device=DEVICE,           # явно задаём устройство
+            device=DEVICE,           
             project=PROJECT_DIR,
             name=EXPERIMENT_NAME,
             exist_ok=True,
-            resume=False,            # не возобновляем старое состояние
+            resume=False,          
             plots=False,
             **AUG_PARAMS
         )
