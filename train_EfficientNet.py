@@ -54,7 +54,7 @@ val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False,
 weights = EfficientNet_B5_Weights.IMAGENET1K_V1
 model = efficientnet_b5(weights=weights)
 
-# Замораживаем все слои
+# Заморозка слоёв
 for param in model.parameters():
     param.requires_grad = False
 
@@ -76,7 +76,7 @@ def calculate_specificity(cm, class_idx):
 
 def plot_roc_curve(y_true, y_probs, class_names, writer, phase, epoch):
     try:
-        # Конвертация в one-hot encoding
+
         y_true_onehot = np.eye(len(class_names))[y_true]
         
         # Расчет ROC кривых
