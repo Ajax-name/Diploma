@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
-from itertools import cycle  # Добавлен недостающий импорт
+from itertools import cycle
 
 # 1. Настройки
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -50,15 +50,14 @@ val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_w
 # 4. Инициализация модели ResNet50
 model = densenet121(weights=DenseNet121_Weights.IMAGENET1K_V1)
 
-# Замораживаем параметры
+# Заморозка параметров
 for param in model.parameters():
     param.requires_grad = False
 
-# Размораживаем последний denseblock
+# Разморозка последнего слоя
 for param in model.features.denseblock4.parameters():
     param.requires_grad = True
 
-# Заменяем классификатор
 num_features = model.classifier.in_features
 model.classifier = nn.Sequential(
     nn.Dropout(0.5),
@@ -238,7 +237,6 @@ for epoch in range(num_epochs):
                np.array(val_labels), np.array(val_probs), 
                train_dataset.classes)
 
-    # Ранняя остановка
     if val_accuracy > best_val_accuracy:
         best_val_accuracy = val_accuracy
         early_stop_counter = 0
