@@ -13,7 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
-from itertools import cycle  # Добавлен недостающий импорт
+from itertools import cycle
 
 # 1. Настройки
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -51,17 +51,17 @@ val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_w
 # 4. Инициализация модели ResNet50
 model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V2)
 
-# Замораживаем параметры
+# Заморозка параметров
 for param in model.parameters():
     param.requires_grad = False
 
-# Размораживаем последние слои
+# Разморозка последних слоёв
 for param in model.layer3.parameters():
     param.requires_grad = True
 for param in model.layer4.parameters():
     param.requires_grad = True
 
-# Заменяем классификатор
+# Классификатор
 model.fc = nn.Sequential(
     nn.Dropout(0.5),
     nn.Linear(model.fc.in_features, num_classes)
@@ -76,7 +76,7 @@ def calculate_specificity(cm, class_idx):
 
 def plot_roc_curve(y_true, y_probs, class_names, writer, phase, epoch):
     try:
-        # Конвертация в one-hot encoding
+
         y_true_onehot = np.eye(len(class_names))[y_true]
         
         # Расчет ROC кривых
@@ -240,7 +240,7 @@ for epoch in range(num_epochs):
                np.array(val_labels), np.array(val_probs), 
                train_dataset.classes)
 
-    # Ранняя остановка
+
     if val_accuracy > best_val_accuracy:
         best_val_accuracy = val_accuracy
         early_stop_counter = 0
